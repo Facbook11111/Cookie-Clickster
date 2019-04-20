@@ -1,0 +1,97 @@
+<script>
+    function update() {
+        document.getElementById('text').value = cookiecount;
+        document.title = cookiecount + "Cookies";
+        document.getElementById('ammountAutoClick').innerHTML = "You own " + autoClick + " AutoClickers";
+        document.getElementById('costAutoClick').innerHTML = ((autoClick+1) * 12) + " Cookies";
+                document.getElementById('ammountBaker').innerHTML = "You have employed " + baker + " Bakers";
+        document.getElementById('costBaker').innerHTML = ((baker+1) * 500) + " Cookies";
+    }
+    var cookiecount = 0;
+    var autoClick = 0;
+    var baker = 0;
+    
+    function timer() {
+        cookiecount = cookiecount + autoClick;
+        cookiecount = cookiecount + baker;
+        update()
+    }
+    setInterval(timer, 1000)
+</script>
+<html>
+<body>
+<script>
+    var cookiecount = 0;
+</script>
+<head><title>0 Cookies</title></head>
+    <style>
+        body {
+            background-image: url("fall.gif");
+            color: black;
+        }
+    </style>
+<center>
+<body>
+    <h1>Bakery:</h1>
+    <form>
+<input type="text">
+</form>
+   <a href=# onclick="add()"><img border="0" alt="W3Schools" src="cookie.png" width="250" height="250"></a>
+    <br><br>
+    You got 
+    <input type="text" id="text" disabled style= text-align:center>
+    <script>
+        function add() {
+            cookiecount = cookiecount + 1
+            update()
+        }
+    </script>
+    Cookies.
+    <br><br>
+    <button><a href="#"onClick="save()">Save Game</a></button>
+    <button><a href="#"onClick="load()">Load Game</a></button>
+    <br><br>
+    
+    <p>Buy one Auto Clicker</p>
+    <button><a href="#" onClick="buyAutoClick()"><img scr=cursor.png width="30px" height="30px"></a></button>
+        <p id="costAutoClick">12 Cookies</p>
+    <p id="ammountAutoClick">You own 0 Auto Clickers</p>
+    <p>Hire one Baker</p>
+     <button><a href="#" onClick="buyBaker()"><img scr=baker.jpg width="30px" height="30px"></a></button>
+    <p id="costBaker">500 cookies</p>
+    <p id="ammountBaker">You have 0 Bakers employed</p>
+
+    
+    <script>
+    function save() {
+        localStorage.setItem("cookiecount", cookiecount);
+        localStorage.setItem("autoClick", autoClick);
+        localStorage.setItem("baker", baker);
+    }
+    function load() {
+        cookiecount = localStorage.getItem("cookiecount");
+        cookiecount = parseInt(cookiecount);
+        autoClick = localStorage.getItem("autoClick");
+        baker = localStorage.getItem("baker")
+        autoclick = parseInt(autoClick);
+        baker = parseInt(baker);
+        update()
+    }
+    function buyBaker() {
+        if (cookiecount >= ((baker+1) * 500)) {
+            cookiecount = cookiecount - ((baker+1) * 500);
+            baker = baker + 1;
+        }
+    }
+    function buyAutoClick() {
+        if (cookiecount >= ((autoClick+1) * 12)) {
+            cookiecount = cookiecount - ((autoClick+1) * 12);
+            autoClick = autoClick + 1;
+            update()
+        }
+    }
+    
+    </script>
+</body>
+</center>
+</html>﻿
